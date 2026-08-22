@@ -10,7 +10,7 @@
     "dev:server": "cd server && npm run dev",
     "dev:client": "cd client && npm run dev",
     "dev": "concurrently -k -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
-    "build": "npm run install:all && cd server && npx prisma db push && node prisma/seed.js && cd ../client && npm run build",
+    "build": "node scripts/build.js",
     "start": "node server/src/app.js",
     "test": "cd server && npm test"
   },
