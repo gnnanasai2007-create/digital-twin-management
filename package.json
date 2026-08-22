@@ -1,0 +1,31 @@
+{
+  "name": "digital-twin-asset-management",
+  "version": "1.0.0",
+  "description": "Digital Twin-Based Asset Management System with Real-Time IoT Simulation, 3D Visualization, and Predictive Maintenance",
+  "main": "server/src/app.js",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix server && npm install --prefix client",
+    "setup:db": "cd server && npx prisma db push && node prisma/seed.js",
+    "seed": "cd server && node prisma/seed.js",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "dev": "concurrently -k -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
+    "build": "npm run install:all && cd server && npx prisma db push && node prisma/seed.js && cd ../client && npm run build",
+    "start": "node server/src/app.js",
+    "test": "cd server && npm test"
+  },
+  "keywords": [
+    "digital-twin",
+    "asset-management",
+    "iot-simulation",
+    "threejs",
+    "react-three-fiber",
+    "predictive-maintenance",
+    "real-time"
+  ],
+  "author": "Antigravity Senior Full-Stack Architect",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

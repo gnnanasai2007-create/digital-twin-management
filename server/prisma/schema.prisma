@@ -1,0 +1,197 @@
+// Prisma Schema for Digital Twin-Based Asset Management System
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id                  String        @id @default(cuid())
+  email               String        @unique
+  password            String
+  name                String
+  role                String        @default("VIEWER") // ADMIN, MANAGER, TECHNICIAN, VIEWER
+  department          String?
+  avatar              String?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  assignedMaintenances Maintenance[]
+  auditLogs           AuditLog[]
+}
+
+model Location {
+  id          String   @id @default(cuid())
+  name        String
+  building    String
+  floor       String
+  room        String?
+  coordinates String?
+  assets      Asset[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Asset {
+  id                 String              @id @default(cuid())
+  assetCode          String              @unique
+  name               String
+  type               String              // PUMP, CNC_MACHINE, ELECTRIC_MOTOR, COMPRESSOR, GENERATOR, HVAC, BOILER, CONVEYOR, HYDRAULIC_PRESS, COOLING_TOWER
+  manufacturer       String
+  model              String
+  serialNumber       String
+  locationId         String?
+  location           Location?           @relation(fields: [locationId], references: [id], onDelete: SetNull)
+  installationDate   DateTime
+  status             String              @default("HEALTHY") // HEALTHY, WARNING, CRITICAL, OFFLINE, MAINTENANCE
+  criticality        String              @default("MEDIUM")  // LOW, MEDIUM, HIGH, CRITICAL
+  healthScore        Float               @default(100.0)
+  operatingHours     Float               @default(0.0)
+  description        String?
+  image              String?
+  specifications     String?             // JSON string
+  components         AssetComponent[]
+  digitalTwin        DigitalTwin?
+  sensors            Sensor[]
+  sensorReadings     SensorReading[]
+  maintenances       Maintenance[]
+  alerts             Alert[]
+  failurePredictions FailurePrediction[]
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+}
+
+model AssetComponent {
+  id              String    @id @default(cuid())
+  assetId         String
+  asset           Asset     @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  name            String
+  type            String    // Bearing, Impeller, Motor Stator, Shaft, Valve, Filter, Cooling Fan
+  status          String    @default("HEALTHY")
+  healthScore     Float     @default(100.0)
+  lastMaintenance DateTime?
+  metadata        String?   // JSON
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model DigitalTwin {
+  id                String   @id @default(cuid())
+  assetId           String   @unique
+  asset             Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  currentState      String   @default("OPERATIONAL") // OPERATIONAL, DEGRADED, FAULT, OFFLINE
+  sensorValues      String   // JSON string of live readings snapshot
+  healthScore       Float    @default(100.0)
+  operatingHours    Float    @default(0.0)
+  maintenanceStatus String   @default("UP_TO_DATE") // UP_TO_DATE, DUE_SOON, OVERDUE, UNDER_MAINTENANCE
+  failureRisk       String   // JSON string { probability, level, window, recommendation }
+  anomalyStatus     String   @default("NORMAL")     // NORMAL, WARNING, ANOMALY_DETECTED
+  simulationMode    String   @default("NORMAL")     // NORMAL, FAILURE_SIMULATION, IDLE
+  config            String?  // JSON string
+  lastSync          DateTime @default(now())
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Sensor {
+  id                String          @id @default(cuid())
+  assetId           String
+  asset             Asset           @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  sensorCode        String
+  type              String          // TEMPERATURE, VIBRATION, PRESSURE, HUMIDITY, ENERGY, RPM, FLOW
+  unit              String          // °C, mm/s, bar, %, kW, RPM, L/min
+  minThreshold      Float
+  maxThreshold      Float
+  warningThreshold  Float
+  criticalThreshold Float
+  currentReading    Float
+  status            String          @default("NORMAL") // NORMAL, WARNING, CRITICAL
+  sampleRate        Int             @default(3000)
+  readings          SensorReading[]
+  alerts            Alert[]
+  createdAt         DateTime        @default(now())
+  updatedAt         DateTime        @updatedAt
+}
+
+model SensorReading {
+  id        String   @id @default(cuid())
+  sensorId  String
+  sensor    Sensor   @relation(fields: [sensorId], references: [id], onDelete: Cascade)
+  assetId   String
+  asset     Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  value     Float
+  status    String   @default("NORMAL")
+  isAnomaly Boolean  @default(false)
+  timestamp DateTime @default(now())
+}
+
+model Maintenance {
+  id                 String    @id @default(cuid())
+  assetId            String
+  asset              Asset     @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  title              String
+  description        String
+  priority           String    @default("MEDIUM") // LOW, MEDIUM, HIGH, URGENT
+  status             String    @default("SCHEDULED") // SCHEDULED, IN_PROGRESS, COMPLETED, OVERDUE
+  scheduledDate      DateTime
+  completedDate      DateTime?
+  assignedToId       String?
+  assignedTo         User?     @relation(fields: [assignedToId], references: [id], onDelete: SetNull)
+  cost               Float     @default(0.0)
+  notes              String?
+  replacedComponents String?   // JSON array of strings
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+}
+
+model Alert {
+  id             String    @id @default(cuid())
+  assetId        String
+  asset          Asset     @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  sensorId       String?
+  sensor         Sensor?   @relation(fields: [sensorId], references: [id], onDelete: SetNull)
+  type           String    // THRESHOLD_VIOLATION, ANOMALY_DETECTED, MAINTENANCE_DUE, FAILURE_RISK, SENSOR_INACTIVE
+  severity       String    @default("INFO") // INFO, WARNING, CRITICAL
+  message        String
+  acknowledged   Boolean   @default(false)
+  acknowledgedAt DateTime?
+  acknowledgedBy String?
+  resolved       Boolean   @default(false)
+  resolvedAt     DateTime?
+  resolvedBy     String?
+  timestamp      DateTime  @default(now())
+}
+
+model FailurePrediction {
+  id                         String   @id @default(cuid())
+  assetId                    String
+  asset                      Asset    @relation(fields: [assetId], references: [id], onDelete: Cascade)
+  failureProbability         Float    // 0.0 to 100.0
+  riskLevel                  String   // LOW, MEDIUM, HIGH, CRITICAL
+  estimatedMaintenanceWindow String
+  recommendation             String
+  factors                    String   // JSON string
+  timestamp                  DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  user       User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  action     String
+  entityType String?
+  entityId   String?
+  details    String?  // JSON
+  ipAddress  String?
+  timestamp  DateTime @default(now())
+}
+
+model SystemSetting {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
