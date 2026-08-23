@@ -30,9 +30,13 @@ run('npm install', clientDir);
 
 // 3. Setup SQLite Database & Seed Data
 console.log('🗄️ Setting up database schema & Prisma client...');
-run('npx prisma generate', serverDir);
-run('npx prisma db push --accept-data-loss', serverDir);
-run('node prisma/seed.js', serverDir);
+try {
+  run('npx prisma generate', serverDir);
+  run('npx prisma db push --accept-data-loss', serverDir);
+  run('node prisma/seed.js', serverDir);
+} catch (e) {
+  console.warn('⚠️ Prisma setup note (will continue with client build):', e.message);
+}
 
 // 4. Build Client SPA Bundle
 console.log('✨ Building optimized Client Frontend bundle...');

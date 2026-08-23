@@ -89,7 +89,7 @@ app.use(errorHandler);
 // Start Server & Background Simulator
 const PORT = config.port;
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   server.listen(PORT, '0.0.0.0', () => {
     console.log(`====================================================`);
     console.log(`🚀 DTAM Server listening on port ${PORT}`);

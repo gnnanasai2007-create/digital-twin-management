@@ -71,6 +71,35 @@ export function SocketProvider({ children }) {
     };
   }, []);
 
+  // Client-side simulation fallback when WebSocket is not connected (e.g. static Vercel deployment)
+  useEffect(() => {
+    if (isConnected) return;
+
+    const interval = setInterval(() => {
+      setLiveAssetsMap((prev) => {
+        const next = { ...prev };
+        Object.keys(next).forEach((assetId) => {
+          const current = next[assetId];
+          if (current?.readings) {
+            const updatedReadings = current.readings.map((r) => {
+              const delta = (Math.random() - 0.49) * (r.unit === '°C' ? 0.8 : r.unit === 'mm/s' ? 0.15 : 0.3);
+              const newVal = Math.max(0, +(r.currentReading + delta).toFixed(2));
+              return { ...r, currentReading: newVal };
+            });
+            next[assetId] = {
+              ...current,
+              readings: updatedReadings,
+              timestamp: new Date().toISOString(),
+            };
+          }
+        });
+        return next;
+      });
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isConnected]);
+
   const startSimulation = (intervalMs = 3000) => {
     socketRef.current?.emit('simulation:start', { intervalMs });
   };
