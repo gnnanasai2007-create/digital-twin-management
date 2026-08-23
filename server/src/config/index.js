@@ -1,4 +1,15 @@
-require('dotenv').config();
+const path = require('path');
+const dotenv = require('dotenv');
+
+// Load environment variables from all possible locations
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+dotenv.config();
+
+const defaultDbPath = path.resolve(__dirname, '../../prisma/dev.db');
+if (!process.env.DATABASE_URL) {
+  process.env.DATABASE_URL = `file:${defaultDbPath}`;
+}
 
 module.exports = {
   port: process.env.PORT || 5000,
