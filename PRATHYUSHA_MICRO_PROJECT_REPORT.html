@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRATHYUSHA ENGINEERING COLLEGE - Micro Project Report (Batch 5)</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 15mm 20mm 15mm;
+    }
+    body {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 12pt;
+      line-height: 1.6;
+      color: #111;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .page {
+      background: #fff;
+      max-width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto 30px auto;
+      padding: 25mm 20mm;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-sizing: border-box;
+      position: relative;
+    }
+    .print-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0284c7;
+      color: #fff;
+      padding: 12px 24px;
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .print-btn:hover {
+      background: #0369a1;
+    }
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+      .page {
+        box-shadow: none;
+        margin: 0;
+        min-height: auto;
+        page-break-after: always;
+      }
+      .print-btn {
+        display: none;
+      }
+    }
+    .text-center { text-align: center; }
+    .text-right { text-align: right; }
+    .bold { font-weight: bold; }
+    .uppercase { text-transform: uppercase; }
+    
+    h1 { font-size: 18pt; margin: 5px 0; }
+    h2 { font-size: 15pt; margin: 15px 0 8px 0; color: #1e293b; border-bottom: 1.5px solid #334155; padding-bottom: 4px; }
+    h3 { font-size: 13pt; margin: 12px 0 5px 0; color: #334155; }
+    h4 { font-size: 12pt; margin: 8px 0 4px 0; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0;
+      font-size: 10.5pt;
+    }
+    th, td {
+      border: 1px solid #334155;
+      padding: 7px 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      font-weight: bold;
+    }
+    
+    pre, code {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 9.5pt;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+    }
+    pre {
+      padding: 10px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.35;
+    }
+    
+    .cover-border {
+      border: 3px double #0f172a;
+      padding: 20px;
+      min-height: 245mm;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .college-logo-text {
+      color: #991b1b;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+    }
+    .cert-signatures {
+      margin-top: 60px;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="print-btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+
+  <!-- PAGE 1: TITLE COVER PAGE -->
+  <div class="page">
+    <div class="cover-border text-center">
+      <div>
+        <h1 class="college-logo-text uppercase">PRATHYUSHA ENGINEERING COLLEGE</h1>
+        <h3 style="margin: 2px 0; font-size: 13pt;">(An Autonomous Institution)</h3>
+        <p style="font-size: 10pt; margin: 4px 0;">Approved by AICTE, New Delhi & Affiliated to Anna University</p>
+        <p style="font-size: 9.5pt; margin: 0;">Poonamallee - Thiruvallur High Road, Chennai - 602025</p>
+        
+        <hr style="border: 0; border-top: 1.5px solid #0f172a; margin: 25px 0;">
+
+        <h2 style="border: none; font-size: 16pt; margin-top: 15px; color: #0f172a;">MICRO PROJECT REPORT</h2>
+        <h3 style="margin: 4px 0; font-weight: normal; color: #475569;">(R-Component Subject)</h3>
+        <h2 style="border: none; font-size: 14pt; margin: 10px 0; color: #0369a1;">OBJECT ORIENTED PROGRAMMING USING JAVA</h2>
+
+        <div style="margin: 40px 0 30px 0;">
+          <p style="font-size: 11pt; margin-bottom: 5px; color: #64748b;">PROJECT TITLE:</p>
+          <h1 style="font-size: 17pt; color: #0f172a; line-height: 1.4;">
+            DIGITAL TWIN-BASED ASSET MANAGEMENT SYSTEM (DTAM)
+          </h1>
+        </div>
+      </div>
+
+      <div>
+        <p class="bold" style="font-size: 11pt; margin-bottom: 8px;">SUBMITTED BY (BATCH NO: 05):</p>
+        <table style="width: 85%; margin: 0 auto;">
+          <thead>
+            <tr>
+              <th class="text-center" style="width: 15%;">S.No</th>
+              <th class="text-center" style="width: 35%;">Register Number</th>
+              <th>Name of the Student</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="text-center">1</td><td class="text-center bold">111425205017</td><td class="bold">DILLI KUMAR J</td></tr>
+            <tr><td class="text-center">2</td><td class="text-center bold">111425205018</td><td class="bold">DINESHKUMAR K</td></tr>
+            <tr><td class="text-center">3</td><td class="text-center bold">111425205019</td><td class="bold">GAYATHRI G</td></tr>
+            <tr><td class="text-center">4</td><td class="text-center bold">111425205020</td><td class="bold">GNNANASAI R</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 30px;">
+          <p class="bold" style="font-size: 11pt; margin: 2px 0;">DEPARTMENT OF COMPUTER SCIENCE AND ENGINEERING</p>
+          <p class="bold" style="font-size: 10.5pt; margin: 2px 0;">ACADEMIC YEAR: 2025 – 2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2: BONAFIDE CERTIFICATE -->
+  <div class="page">
+    <div class="text-center">
+      <h1 class="college-logo-text uppercase">PRATHYUSHA ENGINEERING COLLEGE</h1>
+      <h3 style="margin: 2px 0; font-size: 12pt;">(An Autonomous Institution)</h3>
+      <p style="font-size: 9.5pt; margin: 2px 0;">Poonamallee - Thiruvallur High Road, Chennai - 602025</p>
+      <hr style="margin: 15px 0;">
+      <h2 style="border: none; margin: 20px 0; font-size: 16pt;">BONAFIDE CERTIFICATE</h2>
+    </div>
+
+    <p style="text-align: justify; text-indent: 40px; margin-top: 30px;">
+      This is to certify that the Micro Project report entitled <strong style="color: #0369a1;">"DIGITAL TWIN-BASED ASSET MANAGEMENT SYSTEM (DTAM)"</strong> is the bonafide work carried out by:
+    </p>
+
+    <div style="margin: 20px 0 20px 40px;">
+      <p>• <strong>DILLI KUMAR J (Reg. No: 111425205017)</strong></p>
+      <p>• <strong>DINESHKUMAR K (Reg. No: 111425205018)</strong></p>
+      <p>• <strong>GAYATHRI G (Reg. No: 111425205019)</strong></p>
+      <p>• <strong>GNNANASAI R (Reg. No: 111425205020)</strong></p>
+    </div>
+
+    <p style="text-align: justify; text-indent: 40px;">
+      students of the <strong>Department of Computer Science and Engineering</strong>, in partial fulfillment of the requirements for the <strong>Object Oriented Programming using Java (R-Component)</strong> course during the Academic Year 2025–2026.
+    </p>
+
+    <div class="cert-signatures">
+      <div>
+        <p>_____________________________</p>
+        <p class="bold">SIGNATURE OF THE FACULTY</p>
+      </div>
+      <div class="text-right">
+        <p>_____________________________</p>
+        <p class="bold">SIGNATURE OF THE HOD</p>
+      </div>
+    </div>
+
+    <div style="margin-top: 60px;">
+      <p>Submitted for the Micro Project Viva-Voce Examination held on: ____________________</p>
+    </div>
+
+    <div class="cert-signatures" style="margin-top: 40px;">
+      <div>
+        <p>_____________________________</p>
+        <p class="bold">INTERNAL EXAMINER</p>
+      </div>
+      <div class="text-right">
+        <p>_____________________________</p>
+        <p class="bold">EXTERNAL EXAMINER</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 3: ABSTRACT & OBJECTIVES -->
+  <div class="page">
+    <h2>1. ABSTRACT</h2>
+    <p style="text-align: justify;">
+      In modern Industry 4.0 production environments, unplanned machine downtime causes catastrophic financial losses, secondary component destruction, and plant safety hazards. Traditional asset management depends on reactive (run-to-failure) or rigid calendar-based preventive schedules that do not take into account the live, dynamic thermodynamic and mechanical stress on machine parts.
+    </p>
+    <p style="text-align: justify;">
+      This micro-project presents the <strong>Digital Twin-Based Asset Management System (DTAM)</strong>, developed using <strong>Object-Oriented Programming (OOP) in Java</strong>. The system models physical industrial equipment—such as Centrifugal Slurry Pumps and High-Torque Induction Motors—as virtual software entities (Digital Twins). By processing multi-sensor telemetry (Temperature, Vibration Velocity, Pressure, Energy kW), the system dynamically computes multi-factor asset health scores (0–100%), detects anomalous deviations using custom exceptions, and predicts Remaining Useful Life (RUL) failure risks.
+    </p>
+    <p style="text-align: justify;">
+      The application incorporates key Java Object-Oriented principles, including <strong>Inheritance</strong>, <strong>Polymorphism</strong>, <strong>Abstract Classes & Interfaces</strong>, <strong>Encapsulation</strong>, <strong>Custom Exception Handling</strong>, the <strong>Java Collections Framework</strong> (<code>List</code>, <code>Map</code>), and persistent <strong>File Handling</strong> (<code>BufferedReader</code>, <code>BufferedWriter</code>, <code>FileWriter</code>) to generate ISO-13374 compliance audit logs and work orders.
+    </p>
+
+    <h2>2. PROBLEM STATEMENT</h2>
+    <ul style="text-align: justify; padding-left: 20px;">
+      <li><strong>Lack of Live Condition Transparency:</strong> Operators cannot observe internal mechanical degradation without stopping machines.</li>
+      <li><strong>Disconnected Work Order Systems:</strong> Maintenance systems rely on delayed paper logs, leading to overdue critical repair tasks.</li>
+      <li><strong>Inability to Safely Simulate Failures:</strong> Plant teams cannot safely simulate catastrophic scenarios (thermal runaway or bearing seizure) on live physical machines without causing massive damage.</li>
+    </ul>
+
+    <h2>3. OBJECTIVES</h2>
+    <ol style="text-align: justify; padding-left: 20px;">
+      <li>To apply fundamental <strong>OOP concepts in Java</strong> to solve an industrial predictive maintenance problem.</li>
+      <li>To design an abstract base class <code>Asset</code> and specialized subclasses (<code>PumpAsset</code>, <code>MotorAsset</code>) demonstrating <strong>Inheritance</strong> and <strong>Polymorphism</strong>.</li>
+      <li>To define standard behaviors via Java <strong>Interfaces</strong> (<code>Monitorable</code>, <code>Simulatable</code>).</li>
+      <li>To implement <strong>Custom Exception Handling</strong> (<code>SensorThresholdException</code>, <code>AssetNotFoundException</code>).</li>
+      <li>To utilize the <strong>Java Collections Framework</strong> (<code>LinkedHashMap</code>, <code>ArrayList</code>) for fast asset indexing.</li>
+      <li>To implement <strong>File Handling (I/O)</strong> for saving and reading ISO-13374 compliance reports on disk.</li>
+    </ol>
+  </div>
+
+  <!-- PAGE 4: SYSTEM DESIGN & OOP MATRIX -->
+  <div class="page">
+    <h2>4. REQUIREMENT ANALYSIS</h2>
+    <p><strong>Software Requirements:</strong> Java Development Kit (JDK 8 / 17 / 21), Eclipse / IntelliJ / VS Code, Windows/Linux/macOS.</p>
+    <p><strong>Hardware Requirements:</strong> 2 GB RAM minimum, 100 MB free disk space, Standard x64 Processor.</p>
+
+    <h2>5. OOP CONCEPTS IMPLEMENTATION MATRIX</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>OOP Principle</th>
+          <th>Implementation in DTAM Project</th>
+          <th>Java Source File</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Classes & Objects</strong></td>
+          <td>Encapsulates physical machinery, IoT transducers, alarms, and work orders.</td>
+          <td><code>Sensor.java</code>, <code>MaintenanceTask.java</code></td>
+        </tr>
+        <tr>
+          <td><strong>Encapsulation</strong></td>
+          <td>Private instance variables with public accessors, mutators, and threshold validation.</td>
+          <td><code>Sensor.java</code>, <code>Asset.java</code></td>
+        </tr>
+        <tr>
+          <td><strong>Inheritance</strong></td>
+          <td><code>PumpAsset</code> and <code>MotorAsset</code> extend common state from abstract <code>Asset</code>.</td>
+          <td><code>PumpAsset.java</code>, <code>MotorAsset.java</code></td>
+        </tr>
+        <tr>
+          <td><strong>Polymorphism</strong></td>
+          <td>Dynamic method overriding of <code>calculateHealthScore()</code> and <code>displayDiagnostics()</code>.</td>
+          <td><code>Asset.java</code> (Subclasses)</td>
+        </tr>
+        <tr>
+          <td><strong>Interfaces</strong></td>
+          <td>Defines operational contracts for telemetry monitoring and failure simulation.</td>
+          <td><code>Monitorable.java</code>, <code>Simulatable.java</code></td>
+        </tr>
+        <tr>
+          <td><strong>Exception Handling</strong></td>
+          <td>Custom exceptions handle critical sensor violations and invalid asset lookups.</td>
+          <td><code>SensorThresholdException.java</code></td>
+        </tr>
+        <tr>
+          <td><strong>Collections</strong></td>
+          <td><code>LinkedHashMap</code> for asset lookups and <code>ArrayList</code> for work order queues.</td>
+          <td><code>DigitalTwinApp.java</code></td>
+        </tr>
+        <tr>
+          <td><strong>File Handling</strong></td>
+          <td><code>BufferedWriter</code> & <code>BufferedReader</code> write and read ISO compliance reports.</td>
+          <td><code>FilePersistenceService.java</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>6. MATHEMATICAL HEALTH SCORING FORMULATION</h2>
+    <p>The health score \(H_{\text{asset}} \in [0, 100\%]\) is computed dynamically:</p>
+    <pre>H_asset = 100.0 - Penalty(Temperature) - Penalty(Vibration) - Penalty(Pressure/Energy)</pre>
+    <p>If any critical threshold is breached, a <code>SensorThresholdException</code> is triggered, dropping health below \(40\%\) and setting status to <strong>CRITICAL</strong>.</p>
+  </div>
+
+  <!-- PAGE 5: TEST CASES & SAMPLE OUTPUTS -->
+  <div class="page">
+    <h2>7. TEST CASES & VERIFICATION MATRIX</h2>
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 10%;">Test ID</th>
+          <th style="width: 25%;">Test Scenario</th>
+          <th style="width: 20%;">Input</th>
+          <th style="width: 30%;">Expected Output</th>
+          <th style="width: 15%;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>TC-01</strong></td>
+          <td>Fleet Overview</td>
+          <td>Option <code>1</code></td>
+          <td>Display all assets with initial 100% health</td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-02</strong></td>
+          <td>Live Diagnostics</td>
+          <td>Option <code>2</code>, <code>PUMP-001</code></td>
+          <td>Display all sensor transducers</td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-03</strong></td>
+          <td>Invalid Asset Code</td>
+          <td>Option <code>2</code>, <code>XYZ-99</code></td>
+          <td>Throw <code>AssetNotFoundException</code></td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-04</strong></td>
+          <td>1-Click Failure Sim</td>
+          <td>Option <code>3</code>, <code>PUMP-001</code></td>
+          <td>Escalate sensors above critical limits</td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-05</strong></td>
+          <td>Custom Exception</td>
+          <td>Option <code>3</code>, <code>PUMP-001</code></td>
+          <td>Catch <code>SensorThresholdException</code></td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-06</strong></td>
+          <td>Health Degradation</td>
+          <td>Option <code>3</code>, <code>PUMP-001</code></td>
+          <td>Health score drops from 100% to &lt;40%</td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-07</strong></td>
+          <td>Simulation Reset</td>
+          <td>Option <code>4</code>, <code>PUMP-001</code></td>
+          <td>Restore nominal telemetry & 100% score</td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+        <tr>
+          <td><strong>TC-08</strong></td>
+          <td>File Report Write</td>
+          <td>Option <code>7</code></td>
+          <td>Persist compliance log to disk</td>
+          <td><strong style="color: green;">PASS</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>8. SAMPLE EXECUTION LOG</h2>
+    <pre>
+👉 Enter choice (1-8): 3
+Select Asset Code to Inject Failure: PUMP-001
+
+⚠️ Injecting Thermal Runaway & Mechanical Vibration Spikes into PUMP-001...
+🚨 EXCEPTION CAUGHT: CRITICAL ALARM: Sensor TEMPERATURE breached safety limit! (Reading: 88.50 °C, Limit: 85.00 °C)
+🚨 EXCEPTION CAUGHT: CRITICAL ALARM: Sensor VIBRATION breached safety limit! (Reading: 11.80 mm/s, Limit: 8.00 mm/s)
+🚨 EXCEPTION CAUGHT: CRITICAL ALARM: Sensor PRESSURE breached safety limit! (Reading: 12.40 bar, Limit: 10.00 bar)
+
+==================================================
+ 🏭 DIGITAL TWIN DIAGNOSTICS: Primary Coolant Slurry Pump (PUMP-001)
+==================================================
+ Health Score: 5.0% | Operational Status: CRITICAL
+ Telemetry Readings:
+   [S-TEMP-01]  TEMPERATURE :  88.50 °C   (Status: CRITICAL)
+   [S-VIB-01]   VIBRATION   :  11.80 mm/s (Status: CRITICAL)
+   [S-PRESS-01] PRESSURE    :  12.40 bar  (Status: CRITICAL)
+ Failure Mode Injected: YES (CRITICAL HAZARD)
+==================================================
+    </pre>
+
+    <h2>9. CONCLUSION</h2>
+    <p style="text-align: justify;">
+      The <strong>Digital Twin-Based Asset Management System</strong> successfully demonstrates the application of Java Object-Oriented Programming to solve heavy machinery reliability challenges. By integrating inheritance, polymorphism, custom exception handling, collections, and file handling, the project provides a robust, extensible foundation for Industry 4.0 asset monitoring.
+    </p>
+
+    <div style="margin-top: 30px;">
+      <p class="bold">TEAM MEMBERS SIGNATURE (BATCH 05):</p>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+        <p>1. ______________________ (DILLI KUMAR J)</p>
+        <p>2. ______________________ (DINESHKUMAR K)</p>
+        <p>3. ______________________ (GAYATHRI G)</p>
+        <p>4. ______________________ (GNNANASAI R)</p>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
