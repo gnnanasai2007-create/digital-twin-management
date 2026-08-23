@@ -5,14 +5,14 @@
   "main": "server/src/app.js",
   "scripts": {
     "install:all": "npm install && npm install --prefix server && npm install --prefix client",
-    "setup:db": "cd server && npx prisma db push && node prisma/seed.js",
-    "seed": "cd server && node prisma/seed.js",
-    "dev:server": "cd server && npm run dev",
-    "dev:client": "cd client && npm run dev",
+    "setup:db": "npm run prisma:push --prefix server && npm run seed --prefix server",
+    "seed": "npm run seed --prefix server",
+    "dev:server": "npm run dev --prefix server",
+    "dev:client": "npm run dev --prefix client",
     "dev": "concurrently -k -n \"SERVER,CLIENT\" -c \"cyan,magenta\" \"npm run dev:server\" \"npm run dev:client\"",
     "build": "node scripts/build.js",
     "start": "node server/src/app.js",
-    "test": "cd server && npm test"
+    "test": "npm test --prefix server"
   },
   "keywords": [
     "digital-twin",

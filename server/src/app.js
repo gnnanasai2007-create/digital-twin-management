@@ -90,7 +90,7 @@ app.use(errorHandler);
 const PORT = config.port;
 
 if (process.env.NODE_ENV !== 'test') {
-  server.listen(PORT, () => {
+  server.listen(PORT, '0.0.0.0', () => {
     console.log(`====================================================`);
     console.log(`🚀 DTAM Server listening on port ${PORT}`);
     console.log(`📡 WebSocket endpoint ready for real-time telemetry`);

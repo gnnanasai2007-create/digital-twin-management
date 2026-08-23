@@ -19,7 +19,8 @@ export function SocketProvider({ children }) {
 
   useEffect(() => {
     // Connect to backend socket
-    const newSocket = io('/', {
+    const socketUrl = import.meta.env.VITE_SOCKET_URL || import.meta.env.VITE_API_URL || '/';
+    const newSocket = io(socketUrl, {
       transports: ['websocket', 'polling'],
       reconnectionAttempts: 10,
       reconnectionDelay: 1000,
